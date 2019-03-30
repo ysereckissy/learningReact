@@ -53,11 +53,11 @@
         }
       ]
 
-      const Recipe = ({name, ingredients, steps}) = >
+      const Recipe = ({name, ingredients, steps}) =>
         <section id={name.toLowerCase().replace(/ /g, "-")}>
           <h1>{name}</h1>
           <ul className="ingredients" >
-            {ingredients.map((ingredient, key) => <li key={key}>{ingredient.name}</li>l)}
+            {ingredients.map((ingredient, key) => <li key={key}>{ingredient.name}</li>)}
           </ul>
           <section className="instructions">
             <h2>cooking Instructions</h2>
@@ -68,6 +68,28 @@
             }
           </section>
         </section>
+
+        const Menu = ({title, recipes}) =>
+          <article>
+            <header>
+              <h1>{title}</h1>
+            </header>
+            <div className="recipes">
+              {
+                recipes.map((recipe, key) =>
+                  <Recipe key={key} {...recipe} />
+                )
+              }
+            </div>
+          </article>
+        
+        ReactDOM.render(
+          <Menu recipes={data} title="Delicious Recipes" />,
+          document.getElementById("react-container")
+        )
+
+        /// TODOs:
+        /// embelish the components with css to make it more presentable
     </script>
   </body>
 </html>
