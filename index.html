@@ -13,30 +13,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
     <!-- Make sure babel knows we need transpilation -->
     <script type="text/babel">
-      ReactDOM.render(
-        <ul>
-          <li> 1 lb Salmon </li>
-          <li> 1 cup Pine Nuts </li>
-          <li> 2 cups Butter Lettuce </li>
-          <li> 1 Yellow Squash </li>
-          <li> 1/2 cup Olive Oil </li>
-          <li> 3 cloves of Garlic </li>
-        </ul>,
-        document.getElementById("react-container")
-      );
-      /// JSX Tips (Things you should understand):
-      /// - JSX allows you to add components as children of another component
-      /// - since class is a reserved word in javascript, className is used to define the class attribute instead
-      /// - Javascript expressions are wrapped in curly braces. e.g: <h1>{this.props.title}</h1>
-      /// - Values of types other than string should also appear as javascript expressions: <input type="checkbox" defaultChecked={false} />
-      /// - javascript add between curly braces will be evaluated
-      /// - JSX is javascript so, you can incorporate JSX directly inside of javascript functions:
-      /// <ul>
-      ///   {this.props.ingredients.map((ingredient, key) => <li key={key}>{ingredient}</li>)}
-      /// </ul>
-      /// JSX looks cleaner and readable, but it can't be interpreted with a browser. All jsx needs to be converted to createElement.
-      /// this is why you need babel
-      /// Make sure to use babel 5.8 since babel 6 and above won't work in browser.
+      const data = [
+        {
+          "name": "Baked Salmon",
+          "ingredients": [
+            {"name": "Salmon", "amount": 1, "measurement": "lb"},
+            {"name": "Pine Nuts", "amount": 1, "measurement": "cup"},
+            {"name": "Butter Lettuce", "amount": 2, "measurement": "cups"},
+            {"name": "Yellow Squash", "amount": 1, "measurement": "med"},
+            {"name": "Olive Oil", "amount": 0.5, "measurement": "cup"},
+            {"name": "Garlic", "amount": 3, "measurement": "cloves"},
+
+          ],
+          "steps": [
+            "Preheat the oven to 350 degrees.",
+            "Spread the olive oil around a glass baking dish.",
+            "Add the salmon, garlic, and pine nuts to the dish.",
+            "Bake for 15 minutes.",
+            "Add the yellow squash and put back in the oven for 30 minutes.",
+            "Remove from the oven and let cool for 15 minutes. Add the lettuce and serve."
+          ]
+        },
+        {
+          "name": "Fish Tacos",
+          "ingredients": [
+            {"name": "whitefish", "amount": 1, "measurement": "lb"},
+            {"name": "Cheese", "amount": 1, "measurement": "cup"},
+            {"name": "Iceberg Lettuce", "amount": 2, "measurement": "cups"},
+            {"name": "Tomatoes", "amount": 2, "measurement": "large"},
+            {"name": "Tortillas", "amount": 3, "measurement": "med"},
+
+          ],
+          "steps": [
+            "Cook the fish on the grill until hot.",
+            "Place the fish on the tortillas.",
+            "Top them with lettuce, tomatoes, and cheese."
+
+          ]
+        }
+      ]
     </script>
   </body>
 </html>
