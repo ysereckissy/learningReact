@@ -6,7 +6,6 @@
   </head>
   <body>
     <div id="react-container"></div>
-
     <!-- React library & ReactDOM -->
     <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
@@ -17,23 +16,24 @@
         ///  {id:"recipe-0", 'data-type': "title"},
        ///   "Baked Solomon"
        /// ));
-       const items = [
-         "1 lb Salmon",
-         "1 cup Pine Nuts",
-         "2 cups Butter Lettuce",
-         "1 Yellow Squash",
-         "1/2 cup Olive Oil",
-         "3 cloves of Garlic"
-       ]
-
-       const instructions = [
-         "preheat the oven to 350 degrees.",
-         "Spread the olive oil around a glass baking dish.",
-         "Add the salmon, garlic, and pine...",
-         "Bake for 15 minutes.",
-         "Add the yellow Squash and put...",
-         "Remove from the oven and let cool for 15...."
-       ]
+       const appdata = {
+          items: [
+            "1 lb Salmon",
+            "1 cup Pine Nuts",
+            "2 cups Butter Lettuce",
+            "1 Yellow Squash",
+            "1/2 cup Olive Oil",
+            "3 cloves of Garlic"
+          ],
+          instructions: [
+            "preheat the oven to 350 degrees.",
+            "Spread the olive oil around a glass baking dish.",
+            "Add the salmon, garlic, and pine...",
+            "Bake for 15 minutes.",
+            "Add the yellow Squash and put...",
+            "Remove from the oven and let cool for 15...."
+          ]
+       }
         const reacttree = React.createElement("section", {id: "baked-salmon"},
             React.createElement("h1", null, "Baked Salmon"),
             ///React.createElement("ul", {"className": "ingredients"},
@@ -47,7 +47,8 @@
             React.createElement(
               "ul",
               {"className": "ingredients"},
-              items.map((ingredient, key) => React.createElement("li", {"key": key}, ingredient))
+              ///items.map((ingredient, key) => React.createElement("li", {"key": key}, ingredient))
+              appdata.items.map((ingredient, key) => React.createElement("li", {"key": key}, ingredient))
             ),
           React.createElement("section", {"className": "instructions"},
             React.createElement("h2", null, "Cooking Instructions"),
@@ -57,7 +58,8 @@
             ///React.createElement("p", null, "Bake for 15 minutes."),
             ///React.createElement("p", null, "Add the yellow squash and put..."),
             ///React.createElement("p", null, "Remove from oven and let cool for 15 ....")
-            instructions.map((instruction, key) => React.createElement("p", {key: key}, instruction))
+            ///instructions.map((instruction, key) => React.createElement("p", {key: key}, instruction))
+            appdata.instructions.map((instruction, key) => React.createElement("p", {key: key}, instruction))
           )
         )
         const IngredientsList = React.createClass({
@@ -85,24 +87,26 @@
             )
           }
         }
-        /// TODOs:
-
         /// Best Practices
+        /// NOTE: Stateless functional components are functions, not object; therefore, they do not have a "this" scope.
         /// Stateless components are functions that take in props and return a DOM element
         /// Stateless componenets are a good way to proctice the rules of functional programming.
         /// You should strive to make each stateless functional component a pure function.
         /// They sould take in props and return a DOM element without causing side effects.
         /// This encourage simplicity and make codebase extremely testable.
         /// The class above could be written statelessly as follow:
-        const StatelessIngredientsList = props => React.createElement("ul", {className: "ingredient"},
-          props.items.map((ingredient, key) => React.createElement("li", {key: key}, ingredient))
+        ///const StatelessIngredientsList = props => React.createElement("ul", {className: "ingredient"},
+        const StatelessIngredientsList = ({items}) => React.createElement("ul", {className: "ingredient"},
+          items.map((ingredient, key) => React.createElement("li", {key: key}, ingredient))
         )
         console.log(reacttree)
+        console.log(appdata)
         ///const list = React.createElement(IngredientsList, {items}, null)
         ///const list = React.createElement(Es6IngredientsList, {items}, null)
-        const list = React.createElement(StatelessIngredientsList, {items}, null)
+        const list = React.createElement(StatelessIngredientsList, {...appdata}, null)
         console.log(list)
         ReactDOM.render(list, document.getElementById('react-container'))
+        /// TODOs:
     </script>
   </body>
 </html>
