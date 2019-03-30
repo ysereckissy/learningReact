@@ -99,14 +99,26 @@
         const StatelessIngredientsList = ({items}) => React.createElement("ul", {className: "ingredient"},
           items.map((ingredient, key) => React.createElement("li", {key: key}, ingredient))
         )
+        /// -------------------------------------------------------------------------------------------------
+        /// Using React.createFactory
+        /// -------------------------------------------------------------------------------------------------
+        console.log(React.DOM.h1(null, "Backed Salmon From React.DOM.h1"))
         console.log(reacttree)
         console.log(appdata)
         ///const list = React.createElement(IngredientsList, {items}, null)
         ///const list = React.createElement(Es6IngredientsList, {items}, null)
-        const list = React.createElement(StatelessIngredientsList, {...appdata}, null)
+        /// here we destructure the appdata object
+        ///const list = React.createElement(StatelessIngredientsList, {...appdata}, null)
+        /// The following is another way of destructuring that works as well
+        const list = React.createElement(StatelessIngredientsList, {items}=appdata, null)
         console.log(list)
         ReactDOM.render(list, document.getElementById('react-container'))
         /// TODOs:
+        /// Split the content of chapter 4 into main concepts
+        /// Each concept goes into a git branch, to encourage learning incrementally with small pieces but interactively with the github
+        /// This will make it easier to prepare and release video tutorials about the subject
+        /// Use the react foctory to create an unordered list as above
+        /// Build an full application with html, javascript and css using each of the methods discussed above
     </script>
   </body>
 </html>
