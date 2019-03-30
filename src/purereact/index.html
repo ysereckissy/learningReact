@@ -60,8 +60,49 @@
             instructions.map((instruction, key) => React.createElement("p", {key: key}, instruction))
           )
         )
+        const IngredientsList = React.createClass({
+          displayName: "IngredientsList",
+
+          renderListItem(ingredient, key) {
+            return React.createElement("li", {key: key}, ingredient)
+          },
+
+          render() {
+            return React.createElement("ul", {"className": "ingredients"},
+              this.props.items.map(this.renderListItem)
+            )
+          }
+        })
+        /// ES6 class version of the same component
+        class Es6IngredientsList extends React.Component {
+
+          renderListItem(ingredient, key) {
+            return React.createElement("li", {key: key}, ingredient)
+          }
+          render() {
+            return React.createElement("ul", {"className": "ingredients"},
+              this.props.items.map(this.renderListItem)
+            )
+          }
+        }
+        /// TODOs:
+
+        /// Best Practices
+        /// Stateless components are functions that take in props and return a DOM element
+        /// Stateless componenets are a good way to proctice the rules of functional programming.
+        /// You should strive to make each stateless functional component a pure function.
+        /// They sould take in props and return a DOM element without causing side effects.
+        /// This encourage simplicity and make codebase extremely testable.
+        /// The class above could be written statelessly as follow:
+        const StatelessIngredientsList = props => React.createElement("ul", {className: "ingredient"},
+          props.items.map((ingredient, key) => React.createElement("li", {key: key}, ingredient))
+        )
         console.log(reacttree)
-        ReactDOM.render(reacttree, document.getElementById('react-container'))
+        ///const list = React.createElement(IngredientsList, {items}, null)
+        ///const list = React.createElement(Es6IngredientsList, {items}, null)
+        const list = React.createElement(StatelessIngredientsList, {items}, null)
+        console.log(list)
+        ReactDOM.render(list, document.getElementById('react-container'))
     </script>
   </body>
 </html>
