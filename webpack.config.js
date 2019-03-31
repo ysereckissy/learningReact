@@ -1,9 +1,12 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: "./src/main.js",
     output: {
         path: "/home/avelino/DDrive/githubprojects/learningReact/dist/assets",
-        filename: "bundle.js"
+        filename: "bundle.js",
+        sourceMapFilename: "bundle.map"
     },
+    devtool: "#source-map",
     module: {
         rules: [
             {
@@ -12,5 +15,8 @@ module.exports = {
                 use: "babel-loader",
             }
         ]
+    },
+    optimization: {
+        minimizer: [new UglifyJsPlugin()]
     }
 }
