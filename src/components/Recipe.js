@@ -1,5 +1,6 @@
 import IngredientsList from './IngredientsList'
 import Instructions from './Instructions'
+import '../styles/Recipe.css'
 
 const Recipe = ({name, ingredients, steps}) =>
     <section id={name.toLowerCase().replace(/ /g, '-')}>
