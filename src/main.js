@@ -6,3 +6,5 @@ ReactDOM.render(
     <AddColorForm />,
     document.getElementById("react-container")
 )
+
+///console.log(<AddColorForm />)

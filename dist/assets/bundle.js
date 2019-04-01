@@ -24824,9 +24824,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -24839,24 +24839,40 @@ var AddColorForm =
 function (_Component) {
   _inherits(AddColorForm, _Component);
 
-  function AddColorForm() {
+  function AddColorForm(props) {
+    var _this;
+
     _classCallCheck(this, AddColorForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(AddColorForm).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddColorForm).call(this, props));
+    _this.submit = _this.submit.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(AddColorForm, [{
+    key: "submit",
+    value: function submit(e) {
+      var _this$refs = this.refs,
+          _title = _this$refs._title,
+          _color = _this$refs._color;
+      e.preventDefault();
+      _title.value = '';
+      _color.value = '#000000';
+
+      _title.focus();
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: function onSubmit(e) {
-          return e.preventDefault();
-        }
+        onSubmit: this.submit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "_title",
         type: "text",
         placeholder: "color title...",
         required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: "_color",
         type: "color",
         required: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "ADD"));
@@ -24887,7 +24903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AddColorForm__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById("react-container"));
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AddColorForm__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById("react-container")); ///console.log(<AddColorForm />)
 
 /***/ })
 
